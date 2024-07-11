@@ -13,23 +13,42 @@ function Home() {
     const navigate = useNavigate()
     const { user } = useContext(UserContext);
     const [balance, setBalance] = useState(null);
+    const [loan_amount, setLoan_amount] = useState(null);
+    const [tenure, setTenure] = useState(null);
     const [referenceId, setReferenceId] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${BASE_URL}/balance/endpoint`,referenceId);
-            toast.success(`Successfully fetched balance : ${response.data.message} `, {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-            setBalance(response.data.balance);
+            const response = await axios.post(`${BASE_URL}/checkCreditorBalance`,referenceId);
+            if(response){
+                toast.success(`Successfully fetched balance : ${response.data.message} `, {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setBalance(response.data.current_balance);
+                setLoan_amount(response.data.loan_amount);
+                setTenure(response.data.tenure);
+                setReferenceId(null)
+            }else if(response.data.status == "ERR_NETWORK"){
+                toast.error(`Error Fetching balance:  ❌ ${response.data.message}`, {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setReferenceId(null)
+            }
         } catch (error) {
             console.error("Error fetching balance:", error);
             toast.error(`Error Fetching balance:  ❌ ${error.data.message}`, {
@@ -43,14 +62,15 @@ function Home() {
                 theme: "dark",
             });
             setBalance(null);
+            setReferenceId(null);
         }
     };
 
-    useEffect(() => {
-        if (!localStorage.getItem('user')) {
-          navigate('/login')
-        }
-      }, [])
+    // useEffect(() => {
+    //     if (!localStorage.getItem('user')) {
+    //       navigate('/login')
+    //     }
+    //   }, [])
     
     
     return (
@@ -80,6 +100,8 @@ function Home() {
                         </div>
                     </div>
                 </div>
+
+                <ToastContainer />
                 <button
                     style={{ backgroundColor: "#5e4baf" }}
                     type="submit"
@@ -87,10 +109,13 @@ function Home() {
                     onClick={handleSubmit}
                 >submit
                 </button>
+                
 
                 {balance !== null && (
                     <div className="text-3xl my-4">
                         <p>Balance: {balance}</p>
+                        <p>Tenure: {tenure}</p>
+                        <p>loan_amount: {loan_amount}</p>
                     </div>
                 )}
 

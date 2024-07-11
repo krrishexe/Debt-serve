@@ -26,20 +26,20 @@ function Login() {
         }
     })
     useEffect(()=>{
-        // console.log(values)
+        console.log(values)
     },[values,errors])
     const [loading, setLoading] = useState(false)
     const [passwordBtn, setPasswordBtn] = useState(false)
 
     const onLogin = async (e) => {
         try {
+            console.log(values)
             e.preventDefault()
             setLoading(true);
-            const response = await axios.post(`${BASE_URL}/user/login`, values)
+            const response = await axios.post(`${BASE_URL}/me`, values)
             if (response.data.status === 200) {
                 console.log(response.data)
                 localStorage.setItem('accessToken', response.data.accessToken)  // for access token
-                localStorage.setItem('refreshToken', response.data.refreshToken)    // for refresh token
 
                 console.log("Login Successful " + response.data)
                 toast.success(`Login successful 🦄 ${response.data.message} `, {
@@ -64,7 +64,7 @@ function Login() {
                 });
                 const getUserData = async () => {
                     try {
-                        const url = `${BASE_URL}/user/me`;
+                        const url = `${BASE_URL}/me`;
                         const token = localStorage.getItem('accessToken');
                         let data = await axios.post(url, { accessToken: token }, {
                             headers: {
