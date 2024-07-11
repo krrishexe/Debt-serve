@@ -1,0 +1,120 @@
+.signup-container {
+    width: 100vw;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .signup-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 0;
+  }
+  
+  .signup-form-container {
+    margin-top: 20px;
+  }
+  
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    position: relative;
+      display: flex;
+      flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  
+  .input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+  }
+  .toggle-password{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    height: auto;
+    outline: none;
+    border: none;
+  }
+  .error-message {
+    color: #ff0000;
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+  
+  .button-submit {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .button-submit:disabled {
+    background-color: #ccc;
+    color: #999;
+    cursor: not-allowed;
+  }
+  
+  .button-submit:hover {
+    background-color: #0056b3;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .link {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .line {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .google {
+    background-color: #fbbB00;
+    color: #000;
+  }
+  
+  .apple {
+    background-color: #000;
+    color: #fff;
+  }
+  
