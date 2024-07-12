@@ -66,11 +66,11 @@ function Home() {
         }
     };
 
-    // useEffect(() => {
-    //     if (!localStorage.getItem('user')) {
-    //       navigate('/login')
-    //     }
-    //   }, [])
+    useEffect(() => {
+        if (!localStorage.getItem('user')) {
+          navigate('/login')
+        }
+      }, [])
     
     
     return (
